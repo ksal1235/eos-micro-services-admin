@@ -41,7 +41,7 @@ spec:
           container('build') {
                 stage('Sonar Scan') {
                   withSonarQubeEnv('sonar') {
-                  sh './mvnw verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=eos_eos'
+			sh './mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=eostestingproject_eos'
                 }
                 }
             }
@@ -53,7 +53,7 @@ spec:
                 stage('Artifactory configuration') {
                     rtServer (
                     id: "jfrog",
-                    url: "https://eosartifact.jfrog.io/artifactory",
+                    url: "https://shoebcloudadmin.jfrog.io/artifactory",
                     credentialsId: "jfrog"
                 )
 
@@ -100,7 +100,7 @@ spec:
           container('build') {
                 stage('Build Image') {
                     docker.withRegistry( 'https://registry.hub.docker.com', 'docker' ) {
-                    def customImage = docker.build("dpthub/eos-micro-services-admin:latest")
+                    def customImage = docker.build("khan234/eos-jenkins-agent-base:latest")
                     customImage.push()             
                     }
                 }
