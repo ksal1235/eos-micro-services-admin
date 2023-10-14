@@ -11,7 +11,7 @@ metadata:
 spec:
   containers:
   - name: build
-    image: dpthub/eos-jenkins-agent-base:latest
+    image: khan234/eos-jenkins-agent-base:latest
     command:
     - cat
     tty: true
@@ -26,7 +26,7 @@ spec:
 ) {
     node (label) {
         stage ('Checkout SCM'){
-          git credentialsId: 'git', url: 'https://dptrealtime@bitbucket.org/dptrealtime/eos-micro-services-admin.git', branch: 'master'
+          git credentialsId: 'git', url: 'https://github.com/ksal1235/eos-micro-services-admin.git', branch: 'master'
           container('build') {
                 stage('Build a Maven project') {
                   //withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
